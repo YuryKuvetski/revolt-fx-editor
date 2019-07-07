@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const WebpackFreeTexPacker = require('webpack-free-tex-packer');
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -78,5 +79,25 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  plugins: [
+    new WebpackFreeTexPacker(
+      [
+        path.resolve(__dirname, '../static/sprites'),
+      ],
+      'static',
+      {
+        textureName: 'revoltfx-spritesheet',
+        powerOfTwo: true,
+        padding: 2,
+        detectIdentical: true,
+        allowTrim: true,
+        exporter: "Pixi",
+        prependFolderName: false,
+        writeToDisk: true,
+        packer: 'MaxRectsPacker',
+        packerMethod: 'Smart',
+      }
+    ),
+  ]
 }
