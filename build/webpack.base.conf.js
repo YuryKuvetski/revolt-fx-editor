@@ -94,6 +94,7 @@ module.exports = {
         allowTrim: true,
         exporter: "Pixi",
         prependFolderName: false,
+        removeFileExtension: true,
         writeToDisk: true,
         packer: 'MaxRectsPacker',
         packerMethod: 'Smart',
